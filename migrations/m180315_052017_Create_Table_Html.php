@@ -24,6 +24,18 @@ class m180315_052017_Create_Table_Html extends Migration
             'createdAt' => $this->dateTime()->null()->defaultValue(null),
             'updatedAt' => $this->dateTime()->null()->defaultValue(null),
         ], $options);
+
+        $this->addForeignKey(
+            'html_createdBy_auth_id',
+            '{{%html}}',
+            'createdBy',
+            '{{%auth}}',
+            'id',
+            'SET NULL',
+            'RESTRICT'
+        );
+
+        $this->createIndex('idx-name-language', '{{%html}}', ['name', 'language'], true);
     }
 
     /**
@@ -31,6 +43,8 @@ class m180315_052017_Create_Table_Html extends Migration
      */
     public function safeDown()
     {
+        $this->dropIndex('idx-name-language', '{{%html}}');
+        $this->dropForeignKey('html_createdBy_auth_id', '{{%html}}');
         $this->dropTable('{{%html}}');
     }
 }

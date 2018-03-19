@@ -1,0 +1,45 @@
+{
+    "name": "contrib/yii2-html",
+    "description": "Позволяет добавлять и выводить Html блоки в нужных местах",
+    "type": "yii2-extension",
+    "keywords": [
+        "yii2",
+        "extension",
+        "Html"
+    ],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "tina",
+            "email": "sayapina.tina@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        },
+        {
+            "type": "composer",
+            "url": "http://packagist.dev-vps.ru"
+        }
+    ],
+    "require": {
+        "php": ">=7.1.0",
+        "yii2-developer/yii2-system": "~0.0.1",
+        "yii2-developer/yii2-ace": "~1.0.0"
+    },
+    "config": {
+        "secure-http": false
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.0.x-dev"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "tina\\html\\": ""
+        }
+    }
+}

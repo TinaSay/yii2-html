@@ -11,8 +11,16 @@ namespace tina\html\widgets;
 use tina\html\models\Html;
 use yii\base\Widget;
 
+/**
+ * Class HtmlWidget
+ *
+ * @package tina\html\widgets
+ */
 class HtmlWidget extends Widget
 {
+    /**
+     * @var string
+     */
     public $name;
 
     /**
@@ -20,12 +28,13 @@ class HtmlWidget extends Widget
      */
     public function run()
     {
-        $htmlBlocks = Html::find()->language()->hidden()->andWhere(['name' => $this->name])->one();
-        if ($htmlBlocks) {
-            return $htmlBlocks->text;
+        $model = Html::find()->language()->hidden()->andWhere(['name' => $this->name])->one();
+        if ($model instanceof Html) {
+            return $this->render($model->template, [
+                'model' => $model,
+            ]);
         } else {
             return null;
         }
-
     }
 }

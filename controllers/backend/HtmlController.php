@@ -126,6 +126,7 @@ class HtmlController extends Controller
     protected function findModel($id)
     {
         if (($model = Html::findOne($id)) !== null) {
+            $this->can(['model' => $model]);
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

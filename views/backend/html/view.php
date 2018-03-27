@@ -40,7 +40,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'attributes' => [
                 'id',
                 'name',
+                'title',
                 'text:html',
+                'template',
                 'hidden:boolean',
                 [
                     'attribute' => 'createdBy',

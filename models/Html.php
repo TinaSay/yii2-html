@@ -8,13 +8,18 @@ use krok\extend\behaviors\LanguageBehavior;
 use krok\extend\behaviors\TimestampBehavior;
 use krok\extend\interfaces\HiddenAttributeInterface;
 use krok\extend\traits\HiddenAttributeTrait;
+use tina\html\Module;
+use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%html}}".
  *
  * @property integer $id
  * @property string $name
+ * @property string $title
  * @property string $text
+ * @property string $template
  * @property integer $hidden
  * @property string $language
  * @property integer $createdBy
@@ -69,8 +74,9 @@ class Html extends \yii\db\ActiveRecord implements HiddenAttributeInterface
     public function rules()
     {
         return [
-            [['name'], 'required'],
+            [['name', 'template'], 'required'],
             [['text'], 'string'],
+            [['title', 'template'], 'string', 'max' => 256],
             [['hidden', 'createdBy'], 'integer'],
             [['createdAt', 'updatedAt'], 'safe'],
             [['name'], 'string', 'max' => 64],
@@ -94,7 +100,9 @@ class Html extends \yii\db\ActiveRecord implements HiddenAttributeInterface
         return [
             'id' => 'ID',
             'name' => 'Имя',
+            'title' => 'Заголовок',
             'text' => 'Текст',
+            'template' => 'Шаблон',
             'hidden' => 'Скрытый',
             'language' => 'Язык',
             'createdBy' => 'Создал',
@@ -102,6 +110,38 @@ class Html extends \yii\db\ActiveRecord implements HiddenAttributeInterface
             'updatedAt' => 'Обновлено',
         ];
     }
+
+    /**
+     * @return array
+     */
+    public static function getTemplates(): array
+    {
+        if (($module = self::getModule()) !== null) {
+            return $module->templates;
+        }
+
+        return [];
+    }
+
+    /**
+     * @return null|string
+     */
+    public function getTemplate(): ?string
+    {
+        return ArrayHelper::getValue(self::getTemplates(), $this->template);
+    }
+
+    /**
+     * @return Module|null
+     */
+    public static function getModule(): ?Module
+    {
+        /** @var Module $module */
+        $module = Yii::$app->getModule('html');
+
+        return $module;
+    }
+
 
     /**
      * @inheritdoc

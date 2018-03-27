@@ -25,7 +25,7 @@ backend:
 ```
     'modules' => [
         'html' => [
-            'class' => 'tina\html\Module',
+            'class' => \tina\html\Module::class,
             'viewPath' => '@vendor/contrib/yii2-html/views/backend',
             'controllerNamespace' => 'tina\html\controllers\backend',
         ],
@@ -35,7 +35,7 @@ backend:
 params:
 
 ```
-'menu' => [
+    'menu' => [
         [
             'label' => 'Html',
             'url' => ['/html/html'],
@@ -46,33 +46,47 @@ params:
 console:
 
 ```
-        'migrate' => [
-            'class' => \yii\console\controllers\MigrateController::class,
-            'migrationTable' => '{{%migration}}',
-            'interactive' => false,
-            'migrationPath' => [
-                '@vendor/contrib/yii2-html/migrations',
-            ],
+    'migrate' => [
+        'class' => \yii\console\controllers\MigrateController::class,
+        'migrationTable' => '{{%migration}}',
+        'interactive' => false,
+        'migrationPath' => [
+            '@vendor/contrib/yii2-html/migrations',
         ],
+    ],
 ```
 
 ...
 
 ```
-            'config' => [
-                [
-                    'name' => 'html',
-                    'controllers' => [
-                        'html' => [
-                            'index',
-                            'view',
-                            'create',
-                            'update',
-                            'delete',
-                        ],
-                    ],
+    'config' => [
+        [
+            'name' => 'html',
+            'controllers' => [
+                    'html' => [
+                        'index',
+                        'view',
+                        'create',
+                        'update',
+                        'delete',
                 ],
             ],
+        ],
+    ],
+```
+
+common:
+
+```
+    'modules' => [
+        'html' => [
+            'class' => \tina\html\Module::class,
+            'templates' => [
+                'default' => 'Default',
+            ],
+        ],
+    ]
+
 ```
 
 use:

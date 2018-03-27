@@ -16,6 +16,11 @@ class Module extends \yii\base\Module implements NameInterface
     public $controllerNamespace = null;
 
     /**
+     * @var array
+     */
+    public $templates = [];
+
+    /**
      * @inheritdoc
      */
     public function init()

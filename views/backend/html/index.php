@@ -37,6 +37,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 ['class' => 'yii\grid\ActionColumn'],
                 'id',
                 'name',
+                'title',
+                [
+                    'attribute' => 'template',
+                    'filter' => $searchModel::getTemplates(),
+                    'value' => function (\tina\html\models\Html $model) {
+                        return $model->getTemplate();
+                    },
+                ],
                 [
                     'class' => HiddenColumn::class,
                     'attribute' => 'hidden',

@@ -28,7 +28,7 @@
         "php": ">=7.1.0",
         "yii2-developer/yii2-system": "~0.0.1",
         "yii2-developer/yii2-ace": "~1.0.0",
-        "yii2-developer/yii2-extend": "~0.1.0"
+        "yii2-developer/yii2-extend": "~0.0.1 | ^0.1"
     },
     "config": {
         "secure-http": false

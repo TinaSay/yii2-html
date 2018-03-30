@@ -66,9 +66,7 @@ console:
                     'html' => [
                         'index',
                         'view',
-                        'create',
                         'update',
-                        'delete',
                 ],
             ],
         ],

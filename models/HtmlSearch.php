@@ -17,8 +17,8 @@ class HtmlSearch extends Html
     {
         return [
             [['id', 'hidden'], 'integer'],
-            [['title', 'template'], 'string'],
-            [['name', 'createdAt', 'updatedAt'], 'safe'],
+            [['name', 'title', 'template'], 'string'],
+            [['createdAt', 'updatedAt'], 'safe'],
         ];
     }
 
@@ -54,12 +54,12 @@ class HtmlSearch extends Html
         $query->andFilterWhere([
             'id' => $this->id,
             'hidden' => $this->hidden,
+            'template' => $this->template,
         ]);
 
         $query
             ->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'template', $this->template])
             ->andFilterWhere(['like', 'createdAt', $this->createdAt])
             ->andFilterWhere(['like', 'updatedAt', $this->updatedAt]);
 

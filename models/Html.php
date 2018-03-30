@@ -2,8 +2,6 @@
 
 namespace tina\html\models;
 
-use app\modules\auth\models\Auth;
-use krok\extend\behaviors\CreatedByBehavior;
 use krok\extend\behaviors\LanguageBehavior;
 use krok\extend\behaviors\TimestampBehavior;
 use krok\extend\interfaces\HiddenAttributeInterface;
@@ -22,12 +20,9 @@ use yii\helpers\ArrayHelper;
  * @property string $template
  * @property integer $hidden
  * @property string $language
- * @property integer $createdBy
  * @property string $createdAt
  * @property string $updatedAt
- *
- * @property Auth $auth
- */
+ **/
 class Html extends \yii\db\ActiveRecord implements HiddenAttributeInterface
 {
     use HiddenAttributeTrait;
@@ -50,9 +45,6 @@ class Html extends \yii\db\ActiveRecord implements HiddenAttributeInterface
         return [
             'TimestampBehavior' => [
                 'class' => TimestampBehavior::class,
-            ],
-            'CreatedByBehavior' => [
-                'class' => CreatedByBehavior::class,
             ],
             'LanguageBehavior' => [
                 'class' => LanguageBehavior::class,
@@ -77,18 +69,11 @@ class Html extends \yii\db\ActiveRecord implements HiddenAttributeInterface
             [['name', 'template'], 'required'],
             [['text'], 'string'],
             [['title', 'template'], 'string', 'max' => 256],
-            [['hidden', 'createdBy'], 'integer'],
+            [['hidden'], 'integer'],
             [['createdAt', 'updatedAt'], 'safe'],
             [['name'], 'string', 'max' => 64],
             [['name'], 'unique', 'targetAttribute' => ['name', 'language']],
             [['language'], 'string', 'max' => 8],
-            [
-                ['createdBy'],
-                'exist',
-                'skipOnError' => true,
-                'targetClass' => Auth::className(),
-                'targetAttribute' => ['createdBy' => 'id'],
-            ],
         ];
     }
 
@@ -105,7 +90,6 @@ class Html extends \yii\db\ActiveRecord implements HiddenAttributeInterface
             'template' => 'Шаблон',
             'hidden' => 'Скрытый',
             'language' => 'Язык',
-            'createdBy' => 'Создал',
             'createdAt' => 'Создано',
             'updatedAt' => 'Обновлено',
         ];
@@ -142,7 +126,6 @@ class Html extends \yii\db\ActiveRecord implements HiddenAttributeInterface
         return $module;
     }
 
-
     /**
      * @inheritdoc
      * @return HtmlQuery the active query used by this AR class.
@@ -150,13 +133,5 @@ class Html extends \yii\db\ActiveRecord implements HiddenAttributeInterface
     public static function find()
     {
         return new HtmlQuery(get_called_class());
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getAuth()
-    {
-        return $this->hasOne(Auth::className(), ['id' => 'createdBy']);
     }
 }

@@ -18,14 +18,6 @@ $this->params['breadcrumbs'][] = $this->title;
         <h4 class="card-title"><?= Html::encode($this->title) ?></h4>
     </div>
 
-    <div class="card-header">
-        <p>
-            <?= Html::a(Yii::t('system', 'Create'), ['create'], [
-                'class' => 'btn btn-success',
-            ]) ?>
-        </p>
-    </div>
-
     <div class="card-content">
 
         <?= GridView::widget([
@@ -34,7 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'filterModel' => $searchModel,
             'columns' => [
                 ['class' => 'yii\grid\SerialColumn'],
-                ['class' => 'yii\grid\ActionColumn'],
+                [
+                    'class' => 'yii\grid\ActionColumn',
+                    'template' => '{view} {update}',
+                ],
                 'id',
                 'name',
                 'title',

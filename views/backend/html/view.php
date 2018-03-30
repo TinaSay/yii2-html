@@ -22,13 +22,6 @@ $this->params['breadcrumbs'][] = $this->title;
             <?= Html::a(Yii::t('system', 'Update'), ['update', 'id' => $model->id], [
                 'class' => 'btn btn-primary',
             ]) ?>
-            <?= Html::a(Yii::t('system', 'Delete'), ['delete', 'id' => $model->id], [
-                'class' => 'btn btn-danger',
-                'data' => [
-                    'confirm' => Yii::t('system', 'Are you sure you want to delete this item?'),
-                    'method' => 'post',
-                ],
-            ]) ?>
         </p>
     </div>
 
@@ -44,12 +37,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'text:html',
                 'template',
                 'hidden:boolean',
-                [
-                    'attribute' => 'createdBy',
-                    'value' => function (\tina\html\models\Html $model) {
-                        return $model->auth->login;
-                    },
-                ],
                 'createdAt:datetime',
                 'updatedAt:datetime',
             ],

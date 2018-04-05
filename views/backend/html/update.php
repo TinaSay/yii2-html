@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = Yii::t('system', 'Update');
         <?= $this->render('_form', ['form' => $form, 'model' => $model]) ?>
 
         <div class="form-group">
-            <?= Html::submitButton(Yii::t('system', 'Update'),
+            <?= Html::submitButton(Yii::t('system', 'Save'),
                 ['class' => 'btn btn-primary']) ?>
         </div>
 

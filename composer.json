@@ -21,17 +21,14 @@
         },
         {
             "type": "composer",
-            "url": "http://packagist.dev-vps.ru"
+            "url": "https://packagist.dev-vps.ru"
         }
     ],
     "require": {
         "php": ">=7.1.0",
         "yii2-developer/yii2-system": "~1.0.0",
         "yii2-developer/yii2-ace": "~2.0.0",
-        "yii2-developer/yii2-extend": "~0.0.1 | ^0.1"
-    },
-    "config": {
-        "secure-http": false
+        "yii2-developer/yii2-extend": "~1.0.0"
     },
     "extra": {
         "branch-alias": {

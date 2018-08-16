@@ -26,7 +26,7 @@ backend:
     'modules' => [
         'html' => [
             'class' => \tina\html\Module::class,
-            'viewPath' => '@vendor/contrib/yii2-html/views/backend',
+            'viewPath' => '@tina/html/views/backend',
             'controllerNamespace' => 'tina\html\controllers\backend',
         ],
     ],
@@ -51,7 +51,7 @@ console:
         'migrationTable' => '{{%migration}}',
         'interactive' => false,
         'migrationPath' => [
-            '@vendor/contrib/yii2-html/migrations',
+            '@tina/html/migrations',
         ],
     ],
 ```
@@ -84,10 +84,10 @@ common:
             ],
         ],
     ]
-
 ```
 
-use:
+Use:
+----
 
 ```
     <?= HtmlWidget::widget([
